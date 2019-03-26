@@ -1,0 +1,51 @@
+server:
+  port: 8091
+env: development
+project:
+  artifactId: eureka-client
+spring:
+  redis:
+    cache:
+      maxIdle:
+      minIdle:
+      maxTotal:
+      maxWaitMillis: 5000
+      host: localhost:6379
+      port: 6379
+      password: 123456
+  datasource:
+    url: jdbc:mysql://localhost:3306/stock?autoReconnect=true&characterset=utf-8
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+#    mapper-locations: classpath:mapper/*.xml
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+#  type-aliases-package: com.arvin.cloud.master.persistence.mapper
+
+# 心跳时间，即服务续约间隔时间（缺省为30s）
+eureka:
+  instance:
+    lease-renewal-interval-in-seconds: 5
+# 发呆时间，即服务续约到期时间（缺省为90s）
+    lease-expiration-duration-in-seconds: 15
+# 开启健康检查（依赖spring-boot-starter-actuator）
+  client:
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://localhost:8090/eureka/
+
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+
+
+
+logging:
+  config: classpath:logback-spring.xml
+#  path: D:/home/admin/logs/eureka-client/
+

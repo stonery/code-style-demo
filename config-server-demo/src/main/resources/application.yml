@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: config-controller
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/stonery/cloud-config.git #git配置地址
+          username: xxx
+          password: xxxx
+      label: master
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8090/eureka/
+server:
+  port: 8088
